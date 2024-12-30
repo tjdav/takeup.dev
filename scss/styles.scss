@@ -42,13 +42,13 @@ $font-family-sans-serif: LilGrotesk, system-ui, -apple-system, "Segoe UI", Robot
 // Helpers
 @import "bootstrap/scss/helpers";
 
-
 // Custom components
 @import "icon";
 @import "text";
 @import "cursor";
 @import "card";
 @import "offset";
+@import "blockquote";
 
 // Utilities
 @import "bootstrap/scss/utilities/api";
