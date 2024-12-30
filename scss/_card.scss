@@ -1,0 +1,9 @@
+.card {
+  --td-card-bg: #fff;
+}
+
+[data-bs-theme="dark"] {
+  .card {
+    --td-card-bg: var(--td-body-bg);
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "dooksa-org",
+  "description": "Dooksa.org website - An open-source, lightweight low code framework enabling developers to build scalable, accessible web apps with one file.",
+  "version": "0.0.0",
+  "private": true,
+  "repository": "dooksajs/dooksa.org",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "build": "npm run css",
+    "css-compile": "sass --style compressed --silence-deprecation=color-functions --silence-deprecation=mixed-decls --silence-deprecation=import --silence-deprecation=global-builtin --source-map --embed-sources --no-error-css --load-path=node_modules scss/:css/",
+    "css-lint": "stylelint scss/",
+    "css-prefix": "postcss --replace css/styles.css ",
+    "css": "npm-run-all css-compile css-prefix",
+    "server": "sirv --dev --no-clear --port 3000",
+    "start": "npm-run-all --parallel watch server",
+    "watch": "nodemon -e html,scss -x \"npm run css\"",
+    "test": "npm-run-all css-lint css"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "autoprefixer": "^10.4.20",
+    "nodemon": "^3.1.7",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.79.4",
+    "sirv-cli": "^2.0.2",
+    "stylelint": "^16.9.0",
+    "stylelint-config-twbs-bootstrap": "^15.0.0"
+  }
+}

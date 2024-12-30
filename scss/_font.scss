@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "LilGrotesk";
+  src: url("/assets/fonts/LilGrotesk.woff2") format("woff2"),
+    url("/assets/fonts/LilGrotesk-Regular") format("woff2"),
+    url("/assets/fonts/LilGrotesk-Light.woff2") format("woff2"),
+    url("/assets/fonts/LilGrotesk-Bold.woff2") format("woff2");
+  font-weight: 100 1000;
+  font-display: swap;
+}

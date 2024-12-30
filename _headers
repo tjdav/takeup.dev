@@ -1,0 +1,6 @@
+/_/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+https://dooksa-org.pages.dev/*
+  X-Robots-Tag: all

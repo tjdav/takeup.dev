@@ -1,0 +1,7 @@
+.offset-sticky:before {
+  display: block;
+  height: 5rem;
+  margin-top: -5rem;
+  visibility: hidden;
+  content: "";
+}
