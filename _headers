@@ -5,7 +5,4 @@ https://takeup.dev/_/*
 
 https://takeup.dev/*
   X-Robots-Tag: all
-
-/static/*
-  Access-Control-Allow-Origin: *
-  X-Robots-Tag: nosnippet
+  Access-Control-Allow-Origin: https://static.cloudflareinsights.com/
