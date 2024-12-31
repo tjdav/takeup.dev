@@ -4,3 +4,5 @@
   Referrer-Policy: no-referrer
 https://takeup.dev/*
   X-Robots-Tag: all
+https://static.cloudflareinsights.com/*
+  Access-Control-Allow-Origin: *
