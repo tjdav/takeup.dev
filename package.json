@@ -1,9 +1,9 @@
 {
-  "name": "dooksa-org",
-  "description": "Dooksa.org website - An open-source, lightweight low code framework enabling developers to build scalable, accessible web apps with one file.",
-  "version": "0.0.0",
+  "name": "take-up-dev",
+  "description": "Takeup.dev website - Private programming academy dedicated to teaching complete beginners core web technologies such as HTML, CSS, and JavaScript",
+  "version": "1.0.0",
   "private": true,
-  "repository": "dooksajs/dooksa.org",
+  "repository": "https://github.com/tjdav/takeup.dev",
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "npm-run-all css js-compile",
