@@ -38,6 +38,7 @@ $font-family-sans-serif: LilGrotesk, system-ui, -apple-system, "Segoe UI", Robot
 @import "bootstrap/scss/alert";
 @import "bootstrap/scss/card";
 @import "bootstrap/scss/tables";
+@import "bootstrap/scss/offcanvas";
 
 // Helpers
 @import "bootstrap/scss/helpers";
@@ -49,6 +50,7 @@ $font-family-sans-serif: LilGrotesk, system-ui, -apple-system, "Segoe UI", Robot
 @import "card";
 @import "offset";
 @import "blockquote";
+@import "offcanvas-popover";
 
 // Utilities
 @import "bootstrap/scss/utilities/api";
