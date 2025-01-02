@@ -11,6 +11,7 @@ const themeDark = document.getElementById('themeDark')
 // preferred dark theme
 if (themePreferred.matches) {
   themeDark.checked = true
+  changeTheme('dark')
 }
 
 // toggle dark theme
