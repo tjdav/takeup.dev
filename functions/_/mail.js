@@ -1,16 +1,5 @@
 
-import { MailtrapClient } from 'mailtrap'
 import isEmail from 'validator/es/lib/isEmail'
-
-const sender = {
-  email: "hello@demomailtrap.com",
-  name: "Booking",
-}
-const recipients = [
-  {
-    email: "thomas@takeup.dev",
-  }
-]
 
 /**
  * @import {EventContext} from '@cloudflare/workers-types'
@@ -18,7 +7,7 @@ const recipients = [
 
 /**
  * @typedef {Object} env
- * @property {string} MAILTRAP_API
+ * @property {string} MAILCHANNELS_API
  */
 
 /**
@@ -38,14 +27,30 @@ export async function onRequest(context) {
     const subject = formData.get('subject')
 
     if (isEmail(email) && subject) {
-      const body = formData.get('body') || ''
-      const client = new MailtrapClient({ token: context.env.MAILTRAP_API });
-
-      await client.send({
-        from: sender,
-        to: recipients,
-        subject,
-        text: `from: ${email} - ${body}`
+      new Request('https://api.mailchannels.net/tx/v1/send', {
+        method: 'POST',
+        headers: {
+          'X-Api-Key': context.env.MAILCHANNELS_API,
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          personalizations: [
+            {
+              to: [{ to: 'thomas@takeup.dev', name: 'Thomas David' }],
+            },
+          ],
+          from: {
+            email: 'thomas@takeup.dev',
+            name: 'TakeUpDev Booking',
+          },
+          subject: subject,
+          content: [
+            {
+              type: 'text/plain',
+              value: formData.get('body') || '',
+            },
+          ],
+        }),
       })
 
       return Response.redirect('/thank-you.html')
