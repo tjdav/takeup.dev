@@ -51,13 +51,15 @@ export async function onRequest(context) {
             },
           ],
         }),
+        
       })
 
       return Response.redirect('/thank-you.html')
     } else {
-      return Response.redirect('/oops.html', 400)
+      return Response.redirect('/oops.html')
     }
   } catch (error) {
-    return Response.redirect('/oops.html', 500)
+    console.log(error)
+    return Response.redirect('/oops.html')
   }
 }
