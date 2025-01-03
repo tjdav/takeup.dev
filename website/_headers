@@ -1,8 +1,11 @@
-https://takeup.dev/_/*
+/_/*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
 
-https://takeup.dev/*
+/*
   X-Robots-Tag: all
   Access-Control-Allow-Origin: https://static.cloudflareinsights.com/
+
+https://takeup-dev.pages.dev/*
+  X-Robots-Tag: noindex

@@ -1,16 +1,5 @@
 
-import { MailtrapClient } from 'mailtrap'
 import isEmail from 'validator/es/lib/isEmail'
-
-const sender = {
-  email: "hello@demomailtrap.com",
-  name: "Booking",
-}
-const recipients = [
-  {
-    email: "thomas@takeup.dev",
-  }
-]
 
 /**
  * @import {EventContext} from '@cloudflare/workers-types'
@@ -18,7 +7,8 @@ const recipients = [
 
 /**
  * @typedef {Object} env
- * @property {string} MAILTRAP_API
+ * @property {string} MAILCHANNELS_API
+ * @property {string} MAILCHANNELS_DKIM
  */
 
 /**
@@ -27,9 +17,12 @@ const recipients = [
  */
 export async function onRequest(context) {
   const request = context.request
+  const redirectUrl = new URL(context.request.url)
 
   if (request.headers.get('Content-Type') !== 'application/x-www-form-urlencoded') {
-    return Response.redirect('/oops.html')
+    redirectUrl.pathname = '/_/oops.html'
+
+    return Response.redirect(redirectUrl)
   }
 
   try {
@@ -38,21 +31,48 @@ export async function onRequest(context) {
     const subject = formData.get('subject')
 
     if (isEmail(email) && subject) {
-      const body = formData.get('body') || ''
-      const client = new MailtrapClient({ token: context.env.MAILTRAP_API });
-
-      await client.send({
-        from: sender,
-        to: recipients,
-        subject,
-        text: `from: ${email} - ${body}`
+      const sendRequest = await fetch('https://api.mailchannels.net/tx/v1/send', {
+        method: 'POST',
+        headers: {
+          'X-Api-Key': context.env.MAILCHANNELS_API,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          personalizations: [
+            {
+              to: [{ email: 'thomas@takeup.dev', name: 'Thomas David' }],
+              dkim_domain: 'takeup.dev',
+              dkim_selector: 'mcdkim',
+              dkim_private_key: context.env.MAILCHANNELS_DKIM
+            },
+          ],
+          from: {
+            email: 'thomas@takeup.dev',
+            name: 'TakeUpDev Booking',
+          },
+          subject: subject,
+          content: [
+            {
+              type: 'text/plain',
+              value: `from: ${email} - ${formData.get('body') || 'No questions.'}`,
+            },
+          ],
+        })
       })
 
-      return Response.redirect('/thank-you.html')
+      if (!sendRequest.ok) {
+        throw new Error('failed to send email')  
+      }
+
+      redirectUrl.pathname = '/_/thank-you'
+      return Response.redirect(redirectUrl)
     } else {
-      return Response.redirect('/oops.html', 400)
+      redirectUrl.pathname = '/_/oops'
+
+      return Response.redirect(redirectUrl)
     }
   } catch (error) {
-    return Response.redirect('/oops.html', 500)
+    redirectUrl.pathname = '/_/oops'
+    return Response.redirect(redirectUrl)
   }
 }
