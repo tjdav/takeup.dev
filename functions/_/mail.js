@@ -20,7 +20,7 @@ export async function onRequest(context) {
   const redirectUrl = new URL(context.request.url)
 
   if (request.headers.get('Content-Type') !== 'application/x-www-form-urlencoded') {
-    redirectUrl.pathname = '/oops.html'
+    redirectUrl.pathname = '/_/oops.html'
 
     return Response.redirect(redirectUrl)
   }
@@ -64,15 +64,15 @@ export async function onRequest(context) {
         throw new Error('failed to send email')  
       }
 
-      redirectUrl.pathname = '/thank-you'
+      redirectUrl.pathname = '/_/thank-you'
       return Response.redirect(redirectUrl)
     } else {
-      redirectUrl.pathname = '/oops'
+      redirectUrl.pathname = '/_/oops'
 
       return Response.redirect(redirectUrl)
     }
   } catch (error) {
-    redirectUrl.pathname = '/oops'
+    redirectUrl.pathname = '/_/oops'
     return Response.redirect(redirectUrl)
   }
 }
