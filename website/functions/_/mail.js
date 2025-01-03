@@ -27,7 +27,7 @@ export async function onRequest(context) {
     const subject = formData.get('subject')
 
     if (isEmail(email) && subject) {
-      new Request('https://api.mailchannels.net/tx/v1/send', {
+      await fetch('https://api.mailchannels.net/tx/v1/send', {
         method: 'POST',
         headers: {
           'X-Api-Key': context.env.MAILCHANNELS_API,
@@ -50,8 +50,7 @@ export async function onRequest(context) {
               value: formData.get('body') || '',
             },
           ],
-        }),
-        
+        })
       })
 
       return Response.redirect('/thank-you.html')
