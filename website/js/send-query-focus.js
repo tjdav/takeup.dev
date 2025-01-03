@@ -1,28 +1,22 @@
-import changeTheme from './change-theme.js';
-import sendQueryFocus from './send-query-focus.js';
-
 /**
- * Theme change
+ * @param {HTMLInputElement} emailFocusInput
+ * @param {HTMLInputElement} sessionTypeElement
  */
-const themePreferred = window.matchMedia('(prefers-color-scheme: dark)');
-const themeLight = document.getElementById('themeLight')
-const themeDark = document.getElementById('themeDark')
+function sendQueryFocus (emailFocusInput, sessionTypeElement) {
+  /**
+   * @param {Event} event
+   */
+  return function (event) {
+    event.preventDefault()
 
-// preferred dark theme
-if (themePreferred.matches) {
-  themeDark.checked = true
-  changeTheme('dark')
+    // focus email input
+    emailFocusInput.focus()
+    emailFocusInput.scrollIntoView({ behavior: 'smooth' })
+  
+    // select session type
+    sessionTypeElement.checked = true
+  }
 }
-
-// toggle dark theme
-themeDark.addEventListener('input',  () => {
-  changeTheme('dark')
-})
-
-// toggle light theme
-themeLight.addEventListener('input',  () => {
-  changeTheme('light')
-})
 
 /**
  * Booking
