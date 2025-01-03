@@ -60,15 +60,15 @@ export async function onRequest(context) {
         throw new Error('failed to send email')  
       }
 
-      redirectUrl.pathname = '/thank-you.html'
+      redirectUrl.pathname = '/thank-you'
       return Response.redirect(redirectUrl)
     } else {
-      redirectUrl.pathname = '/oops.html'
+      redirectUrl.pathname = '/oops'
 
       return Response.redirect(redirectUrl)
     }
   } catch (error) {
-    redirectUrl.pathname = '/oops.html'
+    redirectUrl.pathname = '/oops'
     return Response.redirect(redirectUrl)
   }
 }
