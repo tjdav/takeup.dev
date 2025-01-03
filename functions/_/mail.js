@@ -34,19 +34,19 @@ export async function onRequest(context) {
         method: 'POST',
         headers: {
           'X-Api-Key': context.env.MAILCHANNELS_API,
-          'content-type': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           personalizations: [
             {
-              to: [{ to: 'thomas@takeup.dev', name: 'Thomas David' }],
+              to: [{ email: 'thomas@takeup.dev', name: 'Thomas David' }],
             },
           ],
           from: {
             email: 'thomas@takeup.dev',
             name: 'TakeUpDev Booking',
           },
-          subject: subject,
+          subject: `from: ${email} - ${subject}`,
           content: [
             {
               type: 'text/plain',
