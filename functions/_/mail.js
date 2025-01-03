@@ -16,9 +16,12 @@ import isEmail from 'validator/es/lib/isEmail'
  */
 export async function onRequest(context) {
   const request = context.request
+  const redirectUrl = new URL(context.request.url)
 
   if (request.headers.get('Content-Type') !== 'application/x-www-form-urlencoded') {
-    return Response.redirect('/oops.html')
+    redirectUrl.pathname = '/oops.html'
+
+    return Response.redirect(redirectUrl)
   }
 
   try {
@@ -27,7 +30,7 @@ export async function onRequest(context) {
     const subject = formData.get('subject')
 
     if (isEmail(email) && subject) {
-      await fetch('https://api.mailchannels.net/tx/v1/send', {
+      const sendRequest = await fetch('https://api.mailchannels.net/tx/v1/send', {
         method: 'POST',
         headers: {
           'X-Api-Key': context.env.MAILCHANNELS_API,
@@ -53,12 +56,19 @@ export async function onRequest(context) {
         })
       })
 
-      return Response.redirect('/thank-you.html')
+      if (!sendRequest.ok) {
+        throw new Error('failed to send email')  
+      }
+
+      redirectUrl.pathname = '/thank-you.html'
+      return Response.redirect(redirectUrl)
     } else {
-      return Response.redirect('/oops.html')
+      redirectUrl.pathname = '/oops.html'
+
+      return Response.redirect(redirectUrl)
     }
   } catch (error) {
-    console.log(error)
-    return Response.redirect('/oops.html')
+    redirectUrl.pathname = '/oops.html'
+    return Response.redirect(redirectUrl)
   }
 }
