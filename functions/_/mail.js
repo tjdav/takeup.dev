@@ -8,6 +8,7 @@ import isEmail from 'validator/es/lib/isEmail'
 /**
  * @typedef {Object} env
  * @property {string} MAILCHANNELS_API
+ * @property {string} MAILCHANNELS_DKIM
  */
 
 /**
@@ -40,17 +41,20 @@ export async function onRequest(context) {
           personalizations: [
             {
               to: [{ email: 'thomas@takeup.dev', name: 'Thomas David' }],
+              dkim_domain: 'takeup.dev',
+              dkim_selector: 'mcdkim',
+              dkim_private_key: context.env.MAILCHANNELS_DKIM
             },
           ],
           from: {
             email: 'thomas@takeup.dev',
             name: 'TakeUpDev Booking',
           },
-          subject: `from: ${email} - ${subject}`,
+          subject: subject,
           content: [
             {
               type: 'text/plain',
-              value: formData.get('body') || '',
+              value: `from: ${email} - ${formData.get('body') || 'No questions.'}`,
             },
           ],
         })
