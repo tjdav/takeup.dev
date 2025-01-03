@@ -31,6 +31,7 @@ export async function onRequest(context) {
     const subject = formData.get('subject')
 
     if (isEmail(email) && subject) {
+      const name = formData.get('name') || ''
       const sendRequest = await fetch('https://api.mailchannels.net/tx/v1/send', {
         method: 'POST',
         headers: {
@@ -46,6 +47,10 @@ export async function onRequest(context) {
               dkim_private_key: context.env.MAILCHANNELS_DKIM
             },
           ],
+          mailform: {
+            email,
+            name
+          },
           from: {
             email: 'thomas@takeup.dev',
             name: 'TakeUpDev Booking',
@@ -54,7 +59,9 @@ export async function onRequest(context) {
           content: [
             {
               type: 'text/plain',
-              value: `from: ${email} - ${formData.get('body') || 'No questions.'}`,
+              value: 'from: ' + email + '\n'
+              + 'name: ' + name + '\n'
+              + 'question: ' + formData.get('body') || 'No questions.'
             },
           ],
         })
