@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="Take-up Dev is for anyone passionate about learning programming, regardless of background.">
+  <link rel="preload" href="./css/styles.css" as="style">
+  <link rel="preload" href="./assets/logo.svg" as="image">
+  <link rel="preload" href="./assets/fonts/LilGrotesk.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <title>Take-up Dev: Master programming fundamentals and unlock your potential in web development.</title>
+</head>
+
+<body>
+  <header class="navbar sticky-top bg-body border-bottom navbar-expand-md">
+    <nav class="container" aria-label="Main navigation">
+      <a class="navbar-brand fw-bold" href="/" aria-label="Dooksa">
+        <img src="./assets/logo.svg" alt="Take up dev logo" height="32" width="173">
+      </a>
+
+      <button class="navbar-toggler" type="button" popovertarget="navbarNav" popovertargetaction="toggle" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="navbarNav" class="offcanvas offcanvas-end" tabindex="-1" popover="auto">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close" popovertarget="navbarNav" popovertargetaction="hide" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body gap-2 d-flex flex-column-reverse flex-md-row justify-content-end">
+          <div class="d-flex gap-2 align-items-end justify-content-center justify-content-center align-items-md-center ms-md-auto flex-grow-1 flex-md-grow-0">
+            <input class="btn-check" type="radio" name="theme" id="themeLight" checked>
+            <label class="btn btn-sm" for="themeLight" aria-label="Light theme">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
+                <title>Light theme</title>
+                <path fill="currentColor" d="m3.55 19.09l1.41 1.41l1.8-1.79l-1.42-1.42M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6c0-3.32-2.69-6-6-6m8 7h3v-2h-3m-2.76 7.71l1.8 1.79l1.41-1.41l-1.79-1.8M20.45 5l-1.41-1.4l-1.8 1.79l1.42 1.42M13 1h-2v3h2M6.76 5.39L4.96 3.6L3.55 5l1.79 1.81zM1 13h3v-2H1m12 9h-2v3h2" />
+              </svg>
+              Light
+            </label>
+            <input class="btn-check" type="radio" name="theme" id="themeDark">
+            <label class="btn btn-sm" for="themeDark" aria-label="Dark theme">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
+                <title>Dark theme</title>
+                <path fill="currentColor" d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3zm3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31" />
+              </svg>
+              Dark
+            </label>
+          </div>
+
+          <ul class="navbar-nav">
+            <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+              <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+              <hr class="d-lg-none my-2 text-white-50">
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="about.html" aria-current="true">About</a>
+            </li>
+            <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+              <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+              <hr class="d-lg-none my-2 text-white-50">
+            </li>
+          </ul>
+
+          <a class="btn btn-primary" href="#book" popovertarget="navbarNav" popovertargetaction="hide" >
+            Book a session
+          </a>
+        </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="px-3 py-5 text-center bg-secondary d-flex flex-column justify-content-center align-items-center border-bottom border-5 border-primary mb-5" style="min-height: 30vh;">
+      <h1 class="display-4 fw-bold text-white text-shadow-lg rounded container">
+        Master programming fundamentals and unlock your potential in web development.
+      </h1>
+    </div>
+    <div class="container">
+      <p class="lead">
+        Whether you're starting your coding journey, refining your skills, transitioning into web development, or aiming to excel in your current role, Take-up Dev is your gateway to mastering programming fundamentals and thriving in the tech industry.
+      </p>
+
+      <h2 class="h3">
+        What is Take-up Dev?
+      </h2>
+
+      <p>
+        Take-up Dev is a private online academy dedicated to helping learners master the core principles of web development. Our philosophy is simple: 
+      </p>
+      
+      <div class="card p-3 shadow-sm mb-4">
+        <blockquote class="blockquote mb-0">
+          <p>Libraries and frameworks come and go, but <strong>programming fundamentals</strong> are <span class="text-decoration-underline">forever.</span></p>
+        </blockquote>
+      </div>
+
+      <p>
+        Our mission is to build your confidence in coding by solidifying the fundamentals. We focus on <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong> — the cornerstone technologies of the web. These skills not only enable you to create functional, interactive, and visually appealing websites, but also lay the groundwork for exploring advanced tools like React, Vue.js, and back-end technologies. Through our hands-on approach, we ensure that you develop sustainable, transferable skills that will help you navigate the ever-changing tech landscape with assurance and adaptability.
+      </p>
+
+      <h2 class="h3">
+        What will you learn at Take-up Dev?
+      </h2>
+      
+      <p>
+        At Take-up Dev, you’ll build a solid foundation in web development by mastering programming fundamentals: 
+      </p>
+
+      <ul>
+        <li>
+          <strong>HTML</strong>: Learn to structure web pages effectively with semantic HTML, ensuring accessibility, user-friendliness, and alignment with industry standards.
+        </li>
+        <li>
+          <strong>CSS</strong>: Transform your designs into visually stunning websites. Master responsive layouts, create captivating animations, and implement user-engaging techniques.
+        </li>
+        <li>
+          <strong>JavaScript</strong>: Gain a deep understanding of JavaScript, the backbone of web interactivity. Build dynamic, engaging user experiences without relying on external libraries.
+        </li>
+        <li>
+          <strong>Typescript</strong>: Learn to catch errors before runtime, implement interfaces and generics, and use advanced type systems to build more robust applications.
+        </li>
+        <li>
+          <strong>Accessibility</strong>: Build inclusive websites that everyone can use, including individuals with disabilities, while adhering to global accessibility standards.
+        </li>
+      </ul>
+
+      <p>
+        Our adaptable curriculum is designed to accommodate the diverse needs of each learner. Rather than following a rigid program, we take an individualized approach, guiding you toward mastery of the fundamentals while setting achievable weekly goals to ensure consistent progress. Along the way, you’ll also develop best practices, problem-solving skills, analytical thinking, and the autonomy needed to take on advanced challenges and thrive as a developer.
+      </p>
+
+      <h2 class="h3">
+        Who is Take-up Dev for?
+      </h2>
+
+      <p>
+        Take-up Dev is for anyone passionate about learning programming, regardless of background.
+      </p>
+
+      <ul>
+        <li>
+          <strong>Complete beginners</strong>: Never written a line of code? No worries! Our step-by-step approach breaks down complex concepts into clear, actionable lessons. Whether you're exploring coding out of curiosity or dreaming of building your own websites, we’ll guide you patiently, making the learning process enjoyable and accessible.
+        </li>
+        <li>
+          <strong>Students and self-learners</strong>: Whether you're in school or teaching yourself to code, our personalized mentorship complements your studies, helping to bridge any gaps in your understanding of the fundamentals. With a strong foundation, you'll accelerate your progress and gain greater independence in your learning.
+        </li>
+        <li>
+          <strong>Job seekers and professionals</strong>: Ready to launch a career in web development, advance in your current role or develop a business as a freelancer? We’re here to help you. Our practical, hands-on guidance will give you the confidence and expertise needed to stand out in the competitive tech industry and reach your professional or entrepreneurial goals.
+        </li>
+      </ul>
+
+      <h2 class="h3">
+        Why choose Take-up Dev?
+      </h2>
+
+      <ul>
+        <li>
+          <strong>Personalized mentorship</strong>: Benefit from the expertise of a mentor with years of experience in both programming and teaching. Receive tailored guidance to address your unique needs, helping you overcome challenges, stay motivated, and achieve your goals.
+        </li>
+        <li>
+          <strong>Flexible learning plans</strong>: Learn at your own pace with mentoring packages that fit your schedule. Pick from one, two, or three hours per week, with discounted pricing for higher engagement.
+        </li>
+        <li>
+          <strong>Real-world applications and portfolio building</strong>: Engage in practical, real-world projects that build your portfolio. Showcase your skills and stand out to potential employers or clients
+        </li>
+        <li>
+          <strong>Email support</strong>: Have a question between lessons? Get additional support via email, free of charge.
+        </li>
+      </ul>
+
+      <h2 class="h3">
+        Take the first step today!
+      </h2>
+
+      <p>
+        By mastering the fundamentals of programming, you’ll open the door to endless opportunities in web development and beyond. 
+      </p>
+      
+      <p>
+        Take up the challenge, take up dev, and start shaping your future in tech today!
+      </p>
+
+      <div class="text-center mb-5">
+        <a class="btn btn-primary btn-lg" href="/#book">Book a session</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-top py-3">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+            Take-up dev
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary">© 2025</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/change-theme.js" defer></script>
+  <script src="/js/send-query-focus.js" defer></script>
+</body>
+</html>
