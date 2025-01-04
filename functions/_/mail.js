@@ -7,6 +7,8 @@ import isEmail from 'validator/es/lib/isEmail'
 
 /**
  * @typedef {Object} env
+ * @property {string} FORM_TO_EMAIL
+ * @property {string} FORM_FROM_EMAIL
  * @property {string} MAILCHANNELS_API
  * @property {string} MAILCHANNELS_DKIM
  */
@@ -41,7 +43,7 @@ export async function onRequest(context) {
         body: JSON.stringify({
           personalizations: [
             {
-              to: [{ email: 'thomas@takeup.dev', name: 'Thomas David' }],
+              to: [{ email: context.env.FORM_TO_EMAIL, name: 'Thomas David' }],
               dkim_domain: 'takeup.dev',
               dkim_selector: 'mcdkim',
               dkim_private_key: context.env.MAILCHANNELS_DKIM
@@ -52,7 +54,7 @@ export async function onRequest(context) {
             name
           },
           from: {
-            email: 'thomas@takeup.dev',
+            email: context.env.FORM_FROM_EMAIL,
             name: 'TakeUpDev Booking',
           },
           subject: subject,
