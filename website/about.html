@@ -21,6 +21,28 @@
   <meta property="og:image" content="https://takeup.dev/assets/og-image.png">
 
   <title>Take-up Dev: Master programming fundamentals and unlock your potential in web development.</title>
+
+  <script>
+    /**
+     * Change preferred theme colour
+     * @param {'light' | 'dark'} theme - set preferred theme
+     */
+    function changeTheme (theme) {
+      const HTMLElement = document.querySelector('html')
+      // update theme
+      HTMLElement.dataset.bsTheme = theme
+      // save theme
+      localStorage.setItem('theme', theme)
+    }
+
+    const currentTheme = localStorage.getItem('theme')
+
+    if (currentTheme) {
+      changeTheme(currentTheme)
+    } else if (window.matchMedia('(prefers-color-scheme: dark)')) {
+      changeTheme('dark')
+    }
+  </script>
 </head>
 
 <body>
@@ -65,7 +87,7 @@
           </ul>
 
           <div class="d-flex gap-2 align-items-end justify-content-center align-items-lg-center ms-lg-auto flex-grow-1 flex-lg-grow-0 order-last order-lg-2 ">
-            <input class="btn-check" type="radio" name="theme" id="themeLight" checked>
+            <input class="btn-check" type="radio" name="theme" id="themeLight" checked oninput="changeTheme('light')">
             <label class="btn btn-sm" for="themeLight" aria-label="Light theme">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
                 <title>Light theme</title>
@@ -73,7 +95,7 @@
               </svg>
               Light
             </label>
-            <input class="btn-check" type="radio" name="theme" id="themeDark">
+            <input class="btn-check" type="radio" name="theme" id="themeDark" oninput="changeTheme('dark')">
             <label class="btn btn-sm" for="themeDark" aria-label="Dark theme">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
                 <title>Dark theme</title>
@@ -127,7 +149,7 @@
           </h2>
 
           <p>
-            At Take-up Dev, you’ll build a solid foundation in web development by mastering programming fundamentals: 
+            At Take-up Dev, you’ll build a solid foundation in web development by mastering programming fundamentals:
           </p>
 
           <ul>
@@ -225,7 +247,6 @@
     </div>
   </footer>
 
-  <script src="/js/change-theme.js"></script>
   <script src="/js/offcanvas-menu.js" defer></script>
 </body>
 </html>
