@@ -1,0 +1,18 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "min-viewport-height": map-merge(
+      map-get($utilities, "min-viewport-height"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "min-viewport-height"), "values"),
+          (
+            30: 30vh,
+            60: 60vh,
+            80: 80vh
+          ),
+        ),
+      ),
+    ),
+  )
+);
