@@ -25,25 +25,71 @@
   <title>Take-up Dev! - Learn web development!</title>
 
   <script>
-    /**
-     * Change preferred theme colour
-     * @param {'light' | 'dark'} theme - set preferred theme
-     */
-    function changeTheme (theme) {
-      const HTMLElement = document.querySelector('html')
-      // update theme
-      HTMLElement.dataset.bsTheme = theme
-      // save theme
-      localStorage.setItem('theme', theme)
-    }
+    (() => {
+      /**
+       * Store theme
+       * @param {'light' | 'dark'} theme - set preferred theme
+       */
+      function setTheme (theme) {
+        window.localStorage.setItem('theme', theme)
+      }
+      /**
+       * Get theme
+       * @returns {'light' | 'dark'}
+       */
+      function getTheme () {
+        const storedTheme = window.localStorage.getItem('theme')
 
-    const currentTheme = localStorage.getItem('theme')
+        if (storedTheme) {
+          return storedTheme
+        }
+        
+        let currentColor = 'light'
 
-    if (currentTheme) {
+        if (window.matchMedia('(prefers-color-scheme: dark)')) {
+          currentTheme = 'dark'
+        }
+
+        return currentColor
+      }
+      /**
+       * Change preferred theme colour
+       * @param {'light' | 'dark'} theme - set preferred theme
+       */
+      function changeTheme (theme) {
+        // update global theme
+        document.documentElement.setAttribute('data-bs-theme', theme)
+      }
+      
+      const currentTheme = getTheme()
+      // set theme
       changeTheme(currentTheme)
-    } else if (window.matchMedia('(prefers-color-scheme: dark)')) {
-      changeTheme('dark')
-    }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const themeLightElement = document.getElementById('themeLight')
+        const themeDarkElement = document.getElementById('themeDark')
+
+        if (currentTheme === "dark") {
+          themeDarkElement.checked = true
+        }
+
+        // collect all theme inputs
+        const themeToggleElements = [
+          themeLightElement,
+          themeDarkElement
+        ]
+
+        for (let i = 0; i < themeToggleElements.length; i++) {
+          const element = themeToggleElements[i]
+
+          // change theme on input update
+          element.addEventListener('input', () => {
+            changeTheme(element.value)
+            setTheme(element.value)
+          })
+        }
+      })
+    })()
   </script>
 </head>
 
@@ -89,7 +135,7 @@
           </ul>
 
           <div class="d-flex gap-2 align-items-end justify-content-center align-items-lg-center ms-lg-auto flex-grow-1 flex-lg-grow-0 order-last order-lg-2 ">
-            <input class="btn-check" type="radio" name="theme" id="themeLight" checked oninput="changeTheme('light')">
+            <input class="btn-check" type="radio" name="theme" id="themeLight" value="light" checked>
             <label class="btn btn-sm" for="themeLight" aria-label="Light theme">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
                 <title>Light theme</title>
@@ -97,7 +143,7 @@
               </svg>
               Light
             </label>
-            <input class="btn-check" type="radio" name="theme" id="themeDark" oninput="changeTheme('dark')">
+            <input class="btn-check" type="radio" name="theme" id="themeDark" value="dark">
             <label class="btn btn-sm" for="themeDark" aria-label="Dark theme">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
                 <title>Dark theme</title>
