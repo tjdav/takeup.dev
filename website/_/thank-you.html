@@ -11,15 +11,82 @@
   <link rel="preload" href="/assets/fonts/LilGrotesk.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-  <link rel="manifest" href="/manifest.json">
   <title>Thank you! - Take-up Dev</title>
+
+  <script>
+    (() => {
+      /**
+       * Store theme
+       * @param {'light' | 'dark'} theme - set preferred theme
+       */
+      function setTheme (theme) {
+        window.localStorage.setItem('theme', theme)
+      }
+      /**
+       * Get theme
+       * @returns {'light' | 'dark'}
+       */
+      function getTheme () {
+        const storedTheme = window.localStorage.getItem('theme')
+
+        if (storedTheme) {
+          return storedTheme
+        }
+        
+        let currentColor = 'light'
+
+        if (window.matchMedia('(prefers-color-scheme: dark)')) {
+          currentTheme = 'dark'
+        }
+
+        return currentColor
+      }
+      /**
+       * Change preferred theme colour
+       * @param {'light' | 'dark'} theme - set preferred theme
+       */
+      function changeTheme (theme) {
+        // update global theme
+        document.documentElement.setAttribute('data-bs-theme', theme)
+      }
+      
+      const currentTheme = getTheme()
+      // set theme
+      changeTheme(currentTheme)
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const themeLightElement = document.getElementById('themeLight')
+        const themeDarkElement = document.getElementById('themeDark')
+
+        if (currentTheme === "dark") {
+          themeDarkElement.checked = true
+        }
+
+        // collect all theme inputs
+        const themeToggleElements = [
+          themeLightElement,
+          themeDarkElement
+        ]
+
+        for (let i = 0; i < themeToggleElements.length; i++) {
+          const element = themeToggleElements[i]
+
+          // change theme on input update
+          element.addEventListener('input', () => {
+            changeTheme(element.value)
+            setTheme(element.value)
+          })
+        }
+      })
+    })()
+  </script>
 </head>
 
 <body>
-  <header class="navbar sticky-top bg-body border-bottom navbar-expand-md">
+  <header class="navbar sticky-top bg-body border-bottom navbar-expand-lg">
     <nav class="container" aria-label="Main navigation">
       <a class="navbar-brand fw-bold" href="/" aria-label="Dooksa">
-        <img src="/assets/logo.svg" alt="Take up dev logo" height="32" width="173">
+        <img src="./assets/logo.svg" alt="Take up dev logo" height="32" width="173">
       </a>
 
       <button class="navbar-toggler" type="button" popovertarget="navbarNav" popovertargetaction="toggle" aria-label="Toggle navigation">
@@ -32,9 +99,26 @@
           <button type="button" class="btn-close" popovertarget="navbarNav" popovertargetaction="hide" aria-label="Close"></button>
         </div>
 
-        <div class="offcanvas-body gap-2 d-flex flex-column-reverse flex-md-row justify-content-end">
-          <div class="d-flex gap-2 align-items-end justify-content-center justify-content-center align-items-md-center ms-md-auto flex-grow-1 flex-md-grow-0">
-            <input class="btn-check" type="radio" name="theme" id="themeLight" checked>
+        <div class="offcanvas-body gap-2 d-flex flex-column flex-lg-row justify-content-end">
+          <ul class="navbar-nav order-1 order-lg-first">
+            <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+              <div class="d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+              <hr class="d-lg-none my-2 text-white-50">
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+              <div class="d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+              <hr class="d-lg-none my-2 text-white-50">
+            </li>
+          </ul>
+
+          <div class="d-flex gap-2 align-items-end justify-content-center align-items-lg-center ms-lg-auto flex-grow-1 flex-lg-grow-0 order-last order-lg-2 ">
+            <input class="btn-check" type="radio" name="theme" id="themeLight" value="light" checked>
             <label class="btn btn-sm" for="themeLight" aria-label="Light theme">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
                 <title>Light theme</title>
@@ -42,7 +126,7 @@
               </svg>
               Light
             </label>
-            <input class="btn-check" type="radio" name="theme" id="themeDark">
+            <input class="btn-check" type="radio" name="theme" id="themeDark" value="dark">
             <label class="btn btn-sm" for="themeDark" aria-label="Dark theme">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img">
                 <title>Dark theme</title>
@@ -51,8 +135,9 @@
               Dark
             </label>
           </div>
-          <a class="btn btn-primary" href="/#book">
-            <small class="ms-1">Book a session</small>
+
+          <a class="btn btn-primary order-first order-lg-last" href="#book">
+            Book a session
           </a>
         </div>
       </div>
@@ -60,7 +145,7 @@
   </header>
 
   <main>
-    <div class="position-relative overflow-hidden px-3 py-5 text-center bg-secondary d-flex flex-column justify-content-center align-items-center border-bottom border-5 border-primary" style="min-height: 80vh;">
+    <div class="position-relative overflow-hidden px-3 py-5 text-center bg-secondary d-flex flex-column justify-content-center align-items-center border-bottom border-5 border-primary min-vh-80">
       <h1 class="display-4 fw-bold text-white text-shadow-lg rounded position-relative z-2">
         Thank you for your query!
       </h1>
