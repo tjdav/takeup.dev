@@ -25,13 +25,13 @@ const selectAskQuestion = document.getElementById('selectAskQuestion')
 const selectMomentumPack = document.getElementById('selectMomentumPack')
 const selectGrowthPack = document.getElementById('selectGrowthPack')
 const selectMasteryPack = document.getElementById('selectMasteryPack')
-const emailLabelElement = document.getElementById('emailLabel')
+const emailElement = document.getElementById('email')
 
 // Create event callbacks
-const sendQueryAskQuestionCallBack = sendQueryFocus(emailLabelElement, document.getElementById('askQuestionPack'))
-const sendQueryMomentumPackCallBack = sendQueryFocus(emailLabelElement, document.getElementById('momentumPack'))
-const sendQueryGrowthPackCallBack = sendQueryFocus(emailLabelElement, document.getElementById('growthPack'))
-const sendQueryMasteryPackCallBack = sendQueryFocus(emailLabelElement, document.getElementById('masteryPack'))
+const sendQueryAskQuestionCallBack = sendQueryFocus(emailElement, document.getElementById('askQuestionPack'))
+const sendQueryMomentumPackCallBack = sendQueryFocus(emailElement, document.getElementById('momentumPack'))
+const sendQueryGrowthPackCallBack = sendQueryFocus(emailElement, document.getElementById('growthPack'))
+const sendQueryMasteryPackCallBack = sendQueryFocus(emailElement, document.getElementById('masteryPack'))
 
 // Select packs
 selectAskQuestion.addEventListener('click', sendQueryAskQuestionCallBack)
