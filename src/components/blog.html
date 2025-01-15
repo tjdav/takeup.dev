@@ -1,0 +1,18 @@
+<template id="take-up-blog">
+  {{ blogPosts }}
+</template>
+
+<script type="module">
+  import { computedTokens } from 'coralite'
+
+  return computedTokens({
+    blogPosts () {
+      return this.aggregate({
+        path: this.tokens.posts,
+        componentId: 'take-up-blog-post',
+        pages: 10,
+        sortBy: 'published_time'
+      })
+    }
+  })
+</script>

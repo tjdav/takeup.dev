@@ -1,0 +1,39 @@
+<template id="take-up-blog-post">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-12 col-md-8 offset-md-2">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary-emphasis">{{ category }}</strong>
+            <h3 class="mb-0">{{ title }}</h3>
+            <div class="mb-1 text-body-secondary">{{ locale_date }}</div>
+            <p class="card-text mb-auto">{{ description }}</p>
+            <a href="{{ url }}" class="icon-link gap-1 icon-link-hover stretched-link">
+              Continue reading
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M8.59 16.58L13.17 12L8.59 7.41L10 6l6 6l-6 6z" />
+              </svg>
+            </a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <img src="{{ thumbnail }}" class="img-fluid" alt="Thumbnail of the article: {{ title }}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="module">
+  import { computedTokens } from 'coralite'
+
+  computedTokens({
+    locale_date () {
+      return new Date(this.tokens.published_date).toLocaleDateString('en-AU', {
+        year: '2-digit',
+        month: 'short',
+        day: 'numeric'
+      })
+    }
+  })
+</script>

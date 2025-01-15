@@ -1,0 +1,69 @@
+<template id="take-up-change-theme">
+  <script>
+    (() => {
+      /**
+       * Store theme
+       * @param {'light' | 'dark'} theme - set preferred theme
+       */
+      function setTheme (theme) {
+        window.localStorage.setItem('theme', theme)
+      }
+      /**
+       * Get theme
+       * @returns {'light' | 'dark'}
+       */
+      function getTheme () {
+        const storedTheme = window.localStorage.getItem('theme')
+
+        if (storedTheme) {
+          return storedTheme
+        }
+        
+        let currentColor = 'light'
+
+        if (window.matchMedia('(prefers-color-scheme: dark)')) {
+          currentTheme = 'dark'
+        }
+
+        return currentColor
+      }
+      /**
+       * Change preferred theme colour
+       * @param {'light' | 'dark'} theme - set preferred theme
+       */
+      function changeTheme (theme) {
+        // update global theme
+        document.documentElement.setAttribute('data-bs-theme', theme)
+      }
+      
+      const currentTheme = getTheme()
+      // set theme
+      changeTheme(currentTheme)
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const themeLightElement = document.getElementById('themeLight')
+        const themeDarkElement = document.getElementById('themeDark')
+
+        if (currentTheme === "dark") {
+          themeDarkElement.checked = true
+        }
+
+        // collect all theme inputs
+        const themeToggleElements = [
+          themeLightElement,
+          themeDarkElement
+        ]
+
+        for (let i = 0; i < themeToggleElements.length; i++) {
+          const element = themeToggleElements[i]
+
+          // change theme on input update
+          element.addEventListener('input', () => {
+            changeTheme(element.value)
+            setTheme(element.value)
+          })
+        }
+      })
+    })()
+  </script>
+</template>

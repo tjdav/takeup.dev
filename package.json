@@ -5,15 +5,18 @@
   "private": true,
   "repository": "https://github.com/tjdav/takeup.dev",
   "license": "AGPL-3.0-only",
+  "type": "module",
   "scripts": {
-    "build": "npm-run-all css",
-    "css-compile": "sass --style compressed --silence-deprecation=color-functions --silence-deprecation=mixed-decls --silence-deprecation=import --silence-deprecation=global-builtin --source-map --embed-sources --no-error-css --load-path=node_modules --load-path=website scss/:website/css/",
+    "assets": "node scripts/assets.js",
+    "build": "npm-run-all assets html css",
+    "css-compile": "sass --style compressed --silence-deprecation=color-functions --silence-deprecation=mixed-decls --silence-deprecation=import --silence-deprecation=global-builtin --source-map --embed-sources --no-error-css --load-path=node_modules --load-path=dist src/scss/:dist/css/",
     "css-lint": "stylelint scss/",
-    "css-prefix": "postcss --replace website/css/styles.css",
+    "css-prefix": "postcss --replace dist/css/styles.css",
     "css": "npm-run-all css-compile css-prefix",
-    "server": "sirv website --dev --no-clear --port 3000",
+    "html": "coralite -c src/components -p src/pages -o dist",
+    "server": "sirv dist --dev --no-clear --port 3000",
     "start": "npm-run-all --parallel watch server",
-    "watch": "nodemon -e html,scss -x \"npm run build\"",
+    "watch": "nodemon -w 'website' -w 'src' -e html,scss -x 'npm run build'",
     "test": "npm-run-all css-lint css"
   },
   "dependencies": {
@@ -23,7 +26,9 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241230.0",
     "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@types/node": "^22.10.6",
     "autoprefixer": "^10.4.20",
+    "coralite": "^0.1.0",
     "nodemon": "^3.1.7",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.47",
