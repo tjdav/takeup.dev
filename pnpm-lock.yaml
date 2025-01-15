@@ -28,8 +28,8 @@ importers:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
       coralite:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.1
+        version: 0.1.1
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -382,8 +382,8 @@ packages:
     resolution: {integrity: sha512-pMD+MVR538ipqkG5JXeOEbKWS5um1H4LUUccUQG68qpeqBYbzYy79Gh55jkd2TtPdRfUaLWdv6LPP//5Zt0aPQ==}
     engines: {node: '>=4'}
 
-  coralite@0.1.0:
-    resolution: {integrity: sha512-JUD1BlBS7GiulPU1qN3uSOsc1Hry3CNifkfP0dg1P38z+cRmam7yugcdNW29OdYFw1I1qXPwa4D9T2jkNRjRhA==}
+  coralite@0.1.1:
+    resolution: {integrity: sha512-aAVx0+E4rJUcJkRDZDygGenAkPPMHvNGbNFhonsagkRemITfAUROziKEdlR/wZ3tNwQs7Ujklu6wf5C4ErS5qA==}
     hasBin: true
 
   cosmiconfig@9.0.0:
@@ -1848,7 +1848,7 @@ snapshots:
 
   console-clear@1.1.1: {}
 
-  coralite@0.1.0:
+  coralite@0.1.1:
     dependencies:
       commander: 13.0.0
 
