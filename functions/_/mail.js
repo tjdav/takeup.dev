@@ -31,6 +31,12 @@ export async function onRequest(context) {
     const formData = await request.formData()
     const email = formData.get('email')
     const subject = formData.get('subject')
+    const body = formData.get('body')
+
+    // common spam
+    if (body === 'null') {
+      throw new Error('Spam')
+    }
 
     if (isEmail(email) && subject) {
       const name = formData.get('name') || ''
@@ -63,7 +69,7 @@ export async function onRequest(context) {
               type: 'text/plain',
               value: 'from: ' + email + '\n'
               + 'name: ' + name + '\n'
-              + 'question: ' + formData.get('body') || 'No questions.'
+              + 'question: ' + body || 'No questions.'
             },
           ],
         })
