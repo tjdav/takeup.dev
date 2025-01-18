@@ -1,5 +1,5 @@
 
-import isEmail from 'validator/es/lib/isEmail'
+import isEmail from 'validator/es/lib/isEmail.js'
 
 /**
  * @import {EventContext} from '@cloudflare/workers-types'
@@ -12,6 +12,8 @@ import isEmail from 'validator/es/lib/isEmail'
  * @property {string} MAILCHANNELS_API
  * @property {string} MAILCHANNELS_DKIM
  */
+
+const englishCharRegExp = /^[\s\w\d\x21-\x2f\x3a-\x40\x5b-\x60\x7b-\x7e]*$/g
 
 /**
  * @param {EventContext<env, String, Object>} context
@@ -34,7 +36,7 @@ export async function onRequest(context) {
     const body = formData.get('body')
 
     // common spam
-    if (body === 'null') {
+    if (body && !englishCharRegExp.test(body)) {
       throw new Error('Spam')
     }
 
