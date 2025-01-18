@@ -36,7 +36,7 @@ export async function onRequest(context) {
     const body = formData.get('body')
 
     // common spam
-    if (body && !englishCharRegExp.test(body)) {
+    if (body && !englishCharRegExp.test(body) || body === 'null') {
       throw new Error('Spam')
     }
 
