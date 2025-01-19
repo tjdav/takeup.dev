@@ -34,6 +34,11 @@ export async function onRequest(context) {
     const email = formData.get('email')
     const subject = formData.get('subject')
     const body = formData.get('body')
+    const formId = formData.get('id')
+
+    if (formId !== '9df8269d58f134894173f60d48f240ffa4f6c9c812276192362bd46c0f92f048') {
+      throw new Error('Spam')
+    }
 
     // common spam
     if (body && !englishCharRegExp.test(body) || body === 'null') {

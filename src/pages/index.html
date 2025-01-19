@@ -325,6 +325,7 @@
         <div class="card mx-auto mb-5" style="max-width: 700px;">
           <div class="card-body">
             <form action="/_/mail" method="post" enctype="application/x-www-form-urlencoded">
+              <input type="hidden" name="id" value="9df8269d58f134894173f60d48f240ffa4f6c9c812276192362bd46c0f92f048">
               <div class="mb-3">
                 <label for="email" class="form-label fs-5">Email address <small class="text-danger-emphasis">(required)</small></label>
                 <input type="email" class="form-control" id="email" placeholder="name@example.com" required name="email" autocomplete="email">
@@ -361,8 +362,8 @@
                 </div>
               </fieldset>
               <div class="mb-3">
-                <label for="questions" class="form-label fs-5">Questions <small class="text-muted">(optional)</small></label>
-                <textarea class="form-control" id="questions" rows="3" name="body"></textarea>
+                <label for="questions" class="form-label fs-5">Question? <small class="text-muted">(optional)</small></label>
+                <input type="text" class="form-control" id="questions" name="body" pattern="^[\s\w\d\x21-\x2f\x3a-\x40\x5b-\x60\x7b-\x7e]*$" title="Use alphanumeric characters">
               </div>
               <button class="btn btn-primary d-inline-flex align-items-center gap-1" type="submit">
                 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
